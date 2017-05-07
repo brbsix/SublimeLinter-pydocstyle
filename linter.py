@@ -31,7 +31,8 @@ class Pydocstyle(PythonLinter):
     error_stream = util.STREAM_STDERR
     line_col_base = (0, 0)  # pydocstyle uses one-based line and zero-based column numbers
     tempfile_suffix = 'py'
-    defaults = {
-        '--add-ignore=': ''
-    }
-    inline_overrides = ('add-ignore')
+    module = 'pydocstyle'
+
+    def check(self, code, filename):
+        """Run pydocstyle on code and return the output."""
+        return list(self.module.check([filename]))
